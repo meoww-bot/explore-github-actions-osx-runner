@@ -1,0 +1,21 @@
+name: explore
+
+on: 
+  push:
+    branches: 
+    - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    steps:
+      - name: explore
+        run: |
+          system_profiler SPHardwareDataType
+          sysctl -n machdep.cpu.brand_string
+          sysctl -a | grep cpu
+          curl -s https://api.ip.sb/geoip | python -m json.tool
