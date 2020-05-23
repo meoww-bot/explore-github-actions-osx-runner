@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: explore
         run: |
+          set -x
           system_profiler SPHardwareDataType
           sysctl -n machdep.cpu.brand_string
           sysctl -a | grep cpu
